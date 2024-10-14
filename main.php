@@ -17,6 +17,7 @@ include_once plugin_dir_path(__FILE__) . 'registration.php';
 include_once plugin_dir_path(__FILE__) . 'custom-product-fields.php';
 
 include_once plugin_dir_path(__FILE__) . 'get-products.php';
+include_once plugin_dir_path(__FILE__) . 'get-events.php';
 
 // Create custom roles on plugin activation
 function thinker_register_custom_roles() {

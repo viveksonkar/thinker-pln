@@ -144,6 +144,7 @@ function add_custom_product_card_styles() {
         color: #000;
     }
     .product-short-description {
+        color: var(--e-global-color-ffd93f);
         font-family: var(--e-global-typography-accent-font-family), Sans-serif;
         font-size: 16px;
         font-weight: 400;
@@ -154,13 +155,16 @@ function add_custom_product_card_styles() {
         color: #666;
         margin-top: 10px;
     }
+    .product-description ul { 
+        padding-left: 20px;
+    }
     .product-image {
         max-width: 100%;
         height: auto;
         margin-bottom: 10px;
     }
     .product-price {
-        color: var(--e-global-color-008051d);
+        color: var(--e-global-color-accent);
         font-family: var(--e-global-typography-accent-font-family), Sans-serif;
         font-size: 20px;
         font-weight: 500;
@@ -175,7 +179,7 @@ function add_custom_product_card_styles() {
         font-weight: var(--e-global-typography-accent-font-weight);
     }
     .product-book-button {
-        background-color: var(--e-global-color-008051d);
+        background-color: var(--e-global-color-accent);
         color: #fff;
         border-radius: 5px;
         text-decoration: none;
