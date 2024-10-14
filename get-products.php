@@ -6,12 +6,17 @@ if (!defined('ABSPATH')) {
 
 // Create a shortcode to display the list of products assigned to the user
 function display_assigned_products_to_user( $atts ) {
-    // Get the current user ID or the specified user ID from shortcode attributes
-    $atts = shortcode_atts( array(
-        'user_id' => get_current_user_id() // Default to current logged-in user
-    ), $atts );
 
-    $user_id = $atts['user_id'];
+    // First, check if 'user_id' is passed in the URL query string
+    if ( isset( $_GET['user_id'] ) ) {
+        $user_id = intval( $_GET['user_id'] ); // Sanitize the user_id from URL
+    } else {
+        // If no user_id is found in the URL, fall back to the shortcode attributes
+        $atts = shortcode_atts( array(
+            'user_id' => get_current_user_id() // Default to the currently logged-in user
+        ), $atts );
+        $user_id = $atts['user_id'];
+    }
 
     if ( ! $user_id ) {
         return 'No user is logged in or specified.';

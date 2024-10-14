@@ -39,8 +39,17 @@ function save_organization_user_profile_field($user_id) {
 
 // Short code for Event
 function custom_event_list_shortcode($atts) {
-    // Get the current logged-in user's ID
-    $user_id = get_current_user_id();
+    
+    // First, check if 'user_id' is passed in the URL query string
+    if ( isset( $_GET['user_id'] ) ) {
+        $user_id = intval( $_GET['user_id'] ); // Sanitize the user_id from URL
+    } else {
+        // If no user_id is found in the URL, fall back to the shortcode attributes
+        $atts = shortcode_atts( array(
+            'user_id' => get_current_user_id() // Default to the currently logged-in user
+        ), $atts );
+        $user_id = $atts['user_id'];
+    }
 
     // Retrieve the organization from user meta
     $org = get_user_meta($user_id, 'organization', true);
@@ -56,7 +65,7 @@ function custom_event_list_shortcode($atts) {
 
     // Check if the organization is available
     if (!$org) {
-        return '<p>No organization found for the user.</p>'; // Fallback message
+        return '<p>No events found for the user.</p>'; // Fallback message
     }
 
     // Build the event-list shortcode with the dynamic organization
